@@ -1,0 +1,116 @@
+---
+title: "Jack Mackerel Assessment Workshop"
+subtitle: "Day One: Running the Model"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: journal
+    number_sections: yes
+  word_document:
+    number_sections: yes
+---
+
+# Main Objectives {-}
+
+- Process the data that go into the assessment model
+- Run the current jack mackerel assessment model
+- Understand the main components of the model
+
+
+# Overview of the Jack Mackerel Assessment Process
+
+The assessment is done every year during the Scientific Committee meeting to provide scientific advice for the management of jack mackerel. The current jack mackerel assessment model was adopted in 2010, with several updates since.
+
+2 Benchmark workshops ([2016](https://www.sprfmo.int/meetings/scientific-committee/4th-sc-2016/2016-assessment-workshop/), [2018](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw6/))
+
+2 Data workshops ([2015](https://www.sprfmo.int/meetings/scientific-committee/3rd-sc-2015/2015-data-workshop/), [2021](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw11/))
+
+
+# What happens during an update
+
+1. Data get sent to Secretariat and processed
+
+1. Data get updated to go into the assessment
+
+1. Data file gets incrementally introduced to the model (exercise called bridging; examples found in table below, and also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
+
+1. Control file gets updated
+
+1. Assessment gets run
+
+1. Check diagnostics
+
+1. Run sensitivities
+
+1. Choose final model
+
+1. Do projections under four different scenarios using the final model
+
+1. Do retrospective analysis (both analytical and historical) using the final model
+
+1. Output from "most conservative" model gets put into the harvest control rule
+
+1. Harvest control rule determines catch advice that is presented to the Commission
+
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     |  Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC08)
+0.01     |  As 0.00 but with revised catches through 2020 (currently still estimates)
+0.02     |  As 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.03     |  As 0.02 but with updated 2020 weight at age data for all fisheries and their associated CPUE indices
+0.04     |  As 0.03 but replaced offshore CPUE up to 2020
+0.05     |  As 0.04 but with 2021 catch projections
+0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.07     |  As 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
+0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10     |  As 0.09 but with updated AcousN 2021 index, with associated age composition and weight at age
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
+1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)
+1.03     | As 1.02 but M=0.45 (NOT RUN)
+1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
+1.05     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
+
+## Data Processing
+Members send data to the Secretariat
+- Catch data
+    - How is this projected for the current year (Secretariat; check Excel sheet in Teams?)
+
+- Composition data
+    - How is this raised (Niels)
+
+- CPUE
+    - Each individual fleet does their own standardisation process, details found in the technical annex
+
+Where do these data live? Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
+
+Code for processing raw data should go onto Github
+
+These data are processed for use in the assessment
+
+
+## New data go into the assessment
+
+## What goes into an assessment
+- Data file
+- Control file
+- Executable
+
+## Components of the Model
+
+- Control file
+- Data file
+- Executable
+
+Once the model is run, we'll have
+- R.rep
+- .cor
+- .par
+- .rep
+- .std
+- .yld

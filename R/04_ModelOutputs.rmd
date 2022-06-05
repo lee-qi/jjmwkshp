@@ -1,0 +1,23 @@
+---
+title: "Jack Mackerel Assessment Workshop"
+subtitle: "Day Two: Understanding Model Outputs"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: journal
+    number_sections: yes
+  word_document:
+    number_sections: yes
+---
+
+# Main Objective
+
+- Understand the components of a jjm output object
+- Be able to make custom plots of jjm model outputs
+
+Most important table is msy_mt
+```
+// Yr Fspr 1-Fspr F/Fmsy Fmsy F Fsprmsy MSY MSYL Bmsy Bzero SSB B/Bmsy
+
+
+```

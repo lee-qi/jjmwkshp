@@ -1,0 +1,18 @@
+---
+title: "Jack Mackerel Assessment Workshop"
+subtitle: "Data Bridging"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: journal
+    number_sections: yes
+  word_document:
+    number_sections: yes
+---
+
+
+# Data Bridging
+Show Excel spreadsheet for building input files
+
+
+Go through `jjm/assessment/R/SC09_Bridging.R`?
