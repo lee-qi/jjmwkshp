@@ -5,12 +5,9 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
     theme: journal
-    number_sections: yes
-  word_document:
-    number_sections: yes
 ---
 
-# Main Objectives {-}
+# Main Objectives
 
 - Process the data that go into the assessment model
 - Run the current jack mackerel assessment model
@@ -21,18 +18,18 @@ output:
 
 The assessment is done every year during the Scientific Committee meeting to provide scientific advice for the management of jack mackerel. The current jack mackerel assessment model was adopted in 2010, with several updates since.
 
-2 Benchmark workshops ([2016](https://www.sprfmo.int/meetings/scientific-committee/4th-sc-2016/2016-assessment-workshop/), [2018](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw6/))
+- 2 Benchmark workshops ([2016](https://www.sprfmo.int/meetings/scientific-committee/4th-sc-2016/2016-assessment-workshop/), [2018](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw6/))
 
-2 Data workshops ([2015](https://www.sprfmo.int/meetings/scientific-committee/3rd-sc-2015/2015-data-workshop/), [2021](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw11/))
+- 2 Data workshops ([2015](https://www.sprfmo.int/meetings/scientific-committee/3rd-sc-2015/2015-data-workshop/), [2021](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw11/))
 
 
-# What happens during an update
+# What Happens During an Update
 
-1. Data get sent to Secretariat and processed
+1. Members send data to Secretariat
 
-1. Data get updated to go into the assessment
+1. Data get processed to go into the assessment
 
-1. Data file gets incrementally introduced to the model (exercise called bridging; examples found in table below, and also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
+1. Data get incrementally introduced to the model (exercise called data bridging)
 
 1. Control file gets updated
 
@@ -40,17 +37,19 @@ The assessment is done every year during the Scientific Committee meeting to pro
 
 1. Check diagnostics
 
-1. Run sensitivities
+1. Run (limited number of) sensitivities
 
 1. Choose final model
 
-1. Do projections under four different scenarios using the final model
+1. Do projections under four different recruitment scenarios using the final model
 
 1. Do retrospective analysis (both analytical and historical) using the final model
 
 1. Output from "most conservative" model gets put into the harvest control rule
 
 1. Harvest control rule determines catch advice that is presented to the Commission
+
+Example of models run during an update (from SC9, also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
 
 
 Model      | Description
@@ -76,36 +75,55 @@ Model      | Description
 1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
 1.05     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
 
-## Data Processing
-Members send data to the Secretariat
-- Catch data
-    - How is this projected for the current year (Secretariat; check Excel sheet in Teams?)
+# Data Processing
+- Members send data to the Secretariat
+    - Catch data
+        - How is this projected for the current year (Secretariat; check Excel sheet in Teams?)
 
-- Composition data
-    - How is this raised (Niels)
+    - Composition data
+        - How is this raised (Niels)
+        - Right now done by hand via Excel
 
-- CPUE
-    - Each individual fleet does their own standardisation process, details found in the technical annex
+    - CPUE
+        - Each individual fleet does their own standardisation process, details found in the technical annex
+        - Is there a unified repository for these?
 
-Where do these data live? Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
-
-Code for processing raw data should go onto Github
-
-These data are processed for use in the assessment
+- These data are stored on the Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
 
 
-## New data go into the assessment
+## Components of the JJM Assessment Model
+1. Data file
+1. Control file
+1. Executable
 
-## What goes into an assessment
-- Data file
-- Control file
-- Executable
+These files are typically stored in the `jjm/assessment` folder on the Github site. We'll go through these in more detail in the next document.
 
-## Components of the Model
+# Running the Assessment
+There are two ways you can run the assessment model- using `R` to run the executable, or using the command line.
 
-- Control file
-- Data file
-- Executable
+## Using R
+Pros:
+
+- Automatically generates files needed to create model diagnostics
+- Creates a `jjm` object in R
+
+## Using the Command Line
+Pros:
+
+- Easier to include ADMB flags (useful for debugging)
+    - Examples can be found in the handy dandy [Reference card](http://www.admb-project.org/docs/refcards/admb-additional-reference-card.pdf)
+
+Cons:
+
+- Familiarity with ADMB is required
+- Tougher to debug when something goes wrong
+- 
+
+```
+./jjms -ind h1_1.00.ctl
+```
+
+# Assessment Model Outputs
 
 Once the model is run, we'll have
 - R.rep
