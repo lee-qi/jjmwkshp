@@ -28,3 +28,9 @@ output:
         - Manual check on quality / missing variables of the sheets
 
 - These data are stored on the Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
+
+
+# Exercise
+- Take a completed ALK from Chile and an incomplete ALK from China and convert the lengths in the Chinese set to catch numbers-at-age by quarter and catch weight-at-age by quarter. 
+- The complete ALK can be found here: https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/completeALK.xlsm?d=w52c4e6a6a8c444829cef938f30f2668b&csf=1&web=1&e=9bPWoj
+- The incomplete ALK can be found here: https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/incompleteALK.xlsm?d=w52c4e6a6a8c444829cef938f30f2668b&csf=1&web=1&e=9bPWoj 
