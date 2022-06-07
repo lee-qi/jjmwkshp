@@ -14,12 +14,12 @@ output:
 
     - Composition data
         - How is this raised (Niels)
-        - [Presentation](https://southpacificrfmo.sharepoint.com/:p:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/03%20Presentations/SCW11-03%20Raising%20the%20offshore%20fleet%20data.pptx?d=w28add1b87d224b92b2616fb926e23695&csf=1&web=1&e=oq0BCM) on raising offshore fleet from Niels during the data workshop
+        - [Presentation](https://southpacificrfmo.sharepoint.com/:p:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/03%20Presentations/SCW11-03%20Raising%20the%20offshore%20fleet%20data.pptx?d=w28add1b87d224b92b2616fb926e23695&csf=1&web=1&e=oq0BCM) on raising offshore fleet from Niels during the 2021 data workshop
 
         - R code found on [Teams](https://southpacificrfmo.sharepoint.com/:u:/r/sites/SPRFMOSC9/Shared%20Documents/Jack%20Mackerel/04%20Data/01_readALK_generateRaisedData.R?csf=1&web=1&e=iPa1w7)
 
     - CPUE
         - Each individual fleet does their own standardisation process, details found in the technical annex
-        - Is there a unified repository for these?
+        - Is there a unified repository for these analyses?
 
 - These data are stored on the Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
