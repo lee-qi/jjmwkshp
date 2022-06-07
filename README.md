@@ -3,7 +3,7 @@
 ## Agenda
 ### Day 1: Basic running examples
 1. Introduction to the jjm model (Link here)
-Running the model from start to finish
+1. Running the model from start to finish
     1. Data input (ALK excel files)
     1. Data input into JJM
     1. Model setting, Model equations, Parameters (refer to technical annex)

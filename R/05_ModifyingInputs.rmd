@@ -1,0 +1,27 @@
+---
+title: "Jack Mackerel Assessment Workshop"
+subtitle: "Data Bridging"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: journal
+    number_sections: yes
+  word_document:
+    number_sections: yes
+---
+
+
+# Data Bridging
+Show Excel spreadsheet for building input files
+
+
+Go through `jjm/assessment/R/SC09_Bridging.R`?
+
+
+# Exercises
+- Add one year of catch data (as was done in the bridging exercise for `0.04` to `0.05`) to the 2021 data file (`1.00.dat`)
+
+- Update the control file from 2021 (`h1_1.00.ctl` and `h2_1.00`) for 2022 
+
+# Debugging Tips and Tricks
+- If you edited the input files and the model seems to be giving nonsensical results, it might be that you've missed number or a line in the input.
