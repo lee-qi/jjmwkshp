@@ -161,7 +161,7 @@ knitr::include_graphics("imgs/kobe.png")
 
 # ADMB Instructions (for advanced users only)
 
-The jack mackerel assessment model is implemented in [AD Model Builder](http://www.admb-project.org). The code for the model structure (`jjms.tpl`) can be found in the `src` folder of the `jjm` repo, or [here](https://github.com/SPRFMO/jjm/blob/master/src/jjms.tpl). This code is compiled into an executable file that will be stored somewhere on the Teams site (link TBD). **With those executable files, you will not have to install ADMB for most assessment runs and sensitivity analyses**.
+The jack mackerel assessment model is implemented in [AD Model Builder](http://www.admb-project.org). The code for the model structure (`jjms.tpl`) can be found in the `src` folder of the `jjm` repo, or [here](https://github.com/SPRFMO/jjm/blob/master/src/jjms.tpl). This code is compiled into an executable file that will be stored somewhere on the Teams [page](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/src?csf=1&web=1&e=qlW5RW). **With those executable files, you will not have to install ADMB for most assessment runs and sensitivity analyses**.
 
 However, if you would like to make changes to the model's structure in the source code, you will need ADMB to re-compile the executable file for your own use.
 

@@ -1,0 +1,100 @@
+---
+title: "Jack Mackerel Assessment Workshop"
+subtitle: "Running the Model"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
+# Running the Assessment
+There are two ways you can run the assessment model- using `R` to run the executable, or using the command line.
+
+**Before we start, please make sure you have an executable file. You can find the instructions to compile your own in the Pre-Workshop [document](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/Documents?csf=1&web=1&e=v9hiV4), or you can download it directly from [Teams](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/src?csf=1&web=1&e=cXKA29).**
+
+## Using R
+Pros:
+
+- Automatically generates files needed to create model diagnostics
+
+- Creates a `jjm` object in R for plotting purposes (i.e. the outputs are automatically read back into R)
+
+- Easy to script
+
+Cons:
+
+- Hard to debug as the function creates a temporary folder on your local machine where the model is run
+
+The code below runs the 2021 assessment from SC9.
+
+```{r}
+library(jjmR)
+
+# The runit() function is a wrapper function that runs the model, reads the output, and plots the runs.
+# ?runit()
+modh1_1.00 <- runit("h1_1.00",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+modh2_1.00 <- runit("h2_1.00",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+
+```
+
+## Using the Command Line
+Pros:
+
+- Easier to include ADMB flags (useful for debugging)
+    - Examples can be found in the handy dandy [Reference card](http://www.admb-project.org/docs/refcards/admb-additional-reference-card.pdf)
+    - Commen ones to use include `-nohess` and `-noest`
+
+- Easy for debugging if the model is producing nonsensical results
+    - The executable produces an  `input.log` file that the R function automatically deletes as part of cleanup
+
+Cons:
+
+- Familiarity with ADMB is required
+
+- Requires more / custom code to read in the output and convert it in R for making diagnostics
+
+```{r}
+# For Windows
+jjms -ind h1_1.00.ctl
+
+# For Mac / Linux
+./jjms -ind h1_1.00.ctl
+```
+
+# Assessment Model Outputs
+
+Once the model is run, we'll have
+- R.rep
+- .cor
+- .par
+- .rep
+- .std
+- .yld
+
+# Debugging Tips and Tricks
+- If you edited the input files and the model seems to be giving nonsensical results, it might be that you've missed number or a line in the input.
+
+- An important thing to note for the input files is that the executable ignores line breaks. The files are read in linearly, so it doesn't matter (to the executable) if values are separated by a space or by a line break. We often use the line breaks to make the files more readable to the human, but that's not how the software reads it.
+
+As such,
+
+```{r}
+#Steepness 
+0.65 0.65 0.65
+300 300 300
+-6 -6 -6
+```
+
+is read as
+
+```{r}
+#Steepness 
+0.65 0.65 0.65 300 300 300 -6 -6 -6
+```
+

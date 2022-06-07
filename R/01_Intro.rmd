@@ -1,10 +1,17 @@
 ---
 title: "Jack Mackerel Assessment Workshop"
-subtitle: "Day One: Running the Model"
+subtitle: "Day One: The Assessment Process"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
     theme: journal
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
 ---
 
 # Main Objectives
@@ -12,19 +19,26 @@ output:
 - Process the data that go into the assessment model
 - Run the current jack mackerel assessment model
 - Understand the main components of the model
+- Be able to update the data and control files with an extra year of data, similar to an update assessment
 
+---
 
 # Overview of the Jack Mackerel Assessment Process
 
 The assessment is done every year during the Scientific Committee meeting to provide scientific advice for the management of jack mackerel. The current jack mackerel assessment model was adopted in 2010, with several updates since.
 
-- 2 Benchmark workshops ([2016](https://www.sprfmo.int/meetings/scientific-committee/4th-sc-2016/2016-assessment-workshop/), [2018](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw6/))
+There are two types of assessment updates we do- update assessments and benchmark assessments.
 
-- 2 Data workshops ([2015](https://www.sprfmo.int/meetings/scientific-committee/3rd-sc-2015/2015-data-workshop/), [2021](https://www.sprfmo.int/meetings/scientific-committee/sc-workshops/scw11/))
+## Update Assessments
+
+- Focus on updating the data for the year
+
+- Limited number of sensitivitiy analyses conducted
+
+- Rarely result in changes to model settings
 
 
-# What Happens During an Update
-
+### Example of the Process
 1. Members send data to Secretariat
 
 1. Data get processed to go into the assessment
@@ -49,6 +63,8 @@ The assessment is done every year during the Scientific Committee meeting to pro
 
 1. Harvest control rule determines catch advice that is presented to the Commission
 
+
+### Example of the Model Runs
 Example of models run during an update (from SC9, also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
 
 
@@ -75,60 +91,46 @@ Model      | Description
 1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
 1.05     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
 
-# Data Processing
-- Members send data to the Secretariat
-    - Catch data
-        - How is this projected for the current year (Secretariat; check Excel sheet in Teams?)
 
-    - Composition data
-        - How is this raised (Niels)
-        - Right now done by hand via Excel
+## What Happens During a Benchmark
 
-    - CPUE
-        - Each individual fleet does their own standardisation process, details found in the technical annex
-        - Is there a unified repository for these?
+- Focus on updating the model settings and testing different model configurations
 
-- These data are stored on the Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
+- Can also include updates to entire datasets (e.g. if methodology for CPUE analysis has changed)
 
+### Example of the Process
+1. Members discuss sensitivity analyses they would like to see
 
-## Components of the JJM Assessment Model
-1. Data file
-1. Control file
-1. Executable
+1. Configure and run sensitivity analyses
 
-These files are typically stored in the `jjm/assessment` folder on the Github site. We'll go through these in more detail in the next document.
+1. View results and discuss
 
-# Running the Assessment
-There are two ways you can run the assessment model- using `R` to run the executable, or using the command line.
+1. Repeat until a final model can be decided upon
 
-## Using R
-Pros:
+### Example of Models Run
+Example of models run during a benchmark assessment (from SC6, also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
 
-- Automatically generates files needed to create model diagnostics
-- Creates a `jjm` object in R
+Model      | Description
+-----------|--------------
+1.0        | As 0.7 in 2017, selectivity change in Chile N acoustic in 2015 and 2016 
+1.1        | As 1.0, but constant selectivity for Chile N Acoustic all years
+1.2        | As 1.1, but constant selectivity for S-C Chile acoustic all years
+1.3        | As 1.2, but constant selectivity for DEPM all years (was change in 2003)
+1.4        | As 0.7 in 2017, selectivity change in Chile N acoustic in 2012 and 2016 
+1.5        | As 1.4, but replace offshore CPUE w/ new version CV=0.2...dropping Russian nominal
+1.5_r      | As 1.5, retros to evaluate if Francis weights are stable
+1.6        | As 1.5, but without Chinese CPUE?
+1.7        | As 1.5, but without Offshore (and Russian) CPUE
+1.8        | As 1.5, but only Offshore CPUE included (all other indices downweighted)
+1.9        | As 1.5, but only Chinese CPUE included (all other indices downweighted)
+1.10       | As 1.5, but without the Acoustic N data
+1.11       | As 1.5, but allow fishery selectivity to change up until age 11 and reduce penalty on domedness
+1.12       | As 1.5, but constant average weight at age w/in fleets and surveys (no time varying)
+**1.13**   | As 1.5 but rescale sample size using Francis T1.8 method (one iteration)
+1.14       | As 1.12, but use ageing error consistent growth relationship (w/ aL^b for wt-age) and supply Maturity at length to get conversion
+1.15       | As 1.5, but change catchability in 2012 for Chilean CPUE
+1.16       | As 1.14, but look at alternative values for M, = 0.28?
+1.1x       | As 1.13?, but estimate M with prior? Do MCMC?
 
-## Using the Command Line
-Pros:
+---
 
-- Easier to include ADMB flags (useful for debugging)
-    - Examples can be found in the handy dandy [Reference card](http://www.admb-project.org/docs/refcards/admb-additional-reference-card.pdf)
-
-Cons:
-
-- Familiarity with ADMB is required
-- Tougher to debug when something goes wrong
-- 
-
-```
-./jjms -ind h1_1.00.ctl
-```
-
-# Assessment Model Outputs
-
-Once the model is run, we'll have
-- R.rep
-- .cor
-- .par
-- .rep
-- .std
-- .yld
