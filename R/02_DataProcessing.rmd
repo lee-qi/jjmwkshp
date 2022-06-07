@@ -10,9 +10,9 @@ output:
 # Data Processing
 - Members send data to the Secretariat
     - Catch data submitted officially to secretariat
-    - Catch data also submitted via ALK templates
+    - Catch data also submitted via ALK templates (https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SC-template-ALK-SPRFMO-V3.2.xlsm?d=wca07804cd4bf463b8ae7e07ee32b2e25&csf=1&web=1&e=5WZ53z)
         - Estimate on catches of the current year based on projection. Projection informed by members, TAC and recent practice
-        - How is this projected for the current year (Secretariat; check Excel sheet in Teams?)
+        - Recent practice not strictly defined, depends on available information 
 
     - Composition data submitted in ALK templates, both for fisheries as research cruises
         - Manual check on quality / missing variables of the sheets
@@ -24,7 +24,7 @@ output:
         - Each individual fleet does their own standardisation process, details found in the technical annex and WDs
     
     - Research surveys
-        - Information from research surveys is submitted via the SURVEY template
+        - Information from research surveys is submitted via the SURVEY template (https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SURVEY_SPRFMO_2021.xlsx?d=w0ee4b1db7f40419fb0bc432dccb37a75&csf=1&web=1&e=ZaLgNK)
         - Manual check on quality / missing variables of the sheets
 
 - These data are stored on the Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
