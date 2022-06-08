@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2022-06-07" />
+<meta name="date" content="2022-06-08" />
 
 <title>Jack Mackerel Assessment Workshop</title>
 
@@ -375,59 +375,83 @@ pre code {
 
 
 <h1 class="title toc-ignore">Jack Mackerel Assessment Workshop</h1>
-<h3 class="subtitle">Model Input Files</h3>
-<h4 class="date">07 June 2022</h4>
+<h3 class="subtitle">Retrospective Analysis</h3>
+<h4 class="date">08 June 2022</h4>
 
 </div>
 
 
-<div id="data-processing" class="section level1">
-<h1>Data Processing</h1>
-<ul>
-<li>Members send data to the Secretariat
-<ul>
-<li>Catch data submitted officially to secretariat</li>
-<li>Catch data also submitted via ALK templates (<a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SC-template-ALK-SPRFMO-V3.2.xlsm?d=wca07804cd4bf463b8ae7e07ee32b2e25&amp;csf=1&amp;web=1&amp;e=5WZ53z" class="uri">https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SC-template-ALK-SPRFMO-V3.2.xlsm?d=wca07804cd4bf463b8ae7e07ee32b2e25&amp;csf=1&amp;web=1&amp;e=5WZ53z</a>)
-<ul>
-<li>Estimate on catches of the current year based on projection.
-Projection informed by members, TAC and recent practice</li>
-<li>Recent practice not strictly defined, depends on available
-information</li>
-</ul></li>
-<li>Composition data submitted in ALK templates, both for fisheries as
-research cruises
-<ul>
-<li>Manual check on quality / missing variables of the sheets</li>
-<li>Visualisation of the data in these ALK sheets (<a href="https://southpacificrfmo.sharepoint.com/:u:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/SC9%20Data%20Processing%20Files/01_readALK_generateRaisedData.R?csf=1&amp;web=1&amp;e=fxobad" class="uri">https://southpacificrfmo.sharepoint.com/:u:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/SC9%20Data%20Processing%20Files/01_readALK_generateRaisedData.R?csf=1&amp;web=1&amp;e=fxobad</a>)</li>
-<li>Linking Length-Frequency data to ALK data <a href="https://southpacificrfmo.sharepoint.com/:p:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/03%20Presentations/SCW11-03%20Raising%20the%20offshore%20fleet%20data.pptx?d=w28add1b87d224b92b2616fb926e23695&amp;csf=1&amp;web=1&amp;e=oq0BCM">Presentation</a></li>
-<li>Automated workflow reading all historic files, new ALK from Chile to
-produce updated catch-at-age is almost finished</li>
-</ul></li>
-<li>CPUE
-<ul>
-<li>Each individual fleet does their own standardisation process,
-details found in the technical annex and WDs</li>
-</ul></li>
-<li>Research surveys
-<ul>
-<li>Information from research surveys is submitted via the SURVEY
-template (<a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SURVEY_SPRFMO_2021.xlsx?d=w0ee4b1db7f40419fb0bc432dccb37a75&amp;csf=1&amp;web=1&amp;e=ZaLgNK" class="uri">https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SURVEY_SPRFMO_2021.xlsx?d=w0ee4b1db7f40419fb0bc432dccb37a75&amp;csf=1&amp;web=1&amp;e=ZaLgNK</a>)</li>
-<li>Manual check on quality / missing variables of the sheets</li>
-</ul></li>
-</ul></li>
-<li>These data are stored on the Teams <a href="https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&amp;web=1&amp;e=huLIns">Data
-Repo</a></li>
-</ul>
+<div id="what-it-is" class="section level1">
+<h1>What it is</h1>
+<p>In addition to checking for model convergence and fit to data,
+another diagnostic we use is the retrospective analysis. In essence, it
+involves removing the most recent years of data (a practice known as
+“peeling”) and fitting the model to each reduced dataset. We typically
+peel a total of five years.</p>
+<p>What we look for here is systematic bias in the derived quantities,
+namely in estimates of biomass. These biases could exist for a myriad of
+reasons, ranging from data inconsistencies to model misspecification.
+Ideally, the model will have low but equal likelihoods of both
+over-estimating and under-estimating biomass.</p>
 </div>
-<div id="exercise" class="section level1">
-<h1>Exercise</h1>
+<div id="how-to-do-this-for-jjm" class="section level1">
+<h1>How to do this for jjm</h1>
+<p>There is a single function in jjmR that allows you to do this.
+However, my current workflow is a bit clunky, because I don’t think the
+retro function currently is exported. It thus requires a cloned (or
+downloaded) repository for jjmR.</p>
 <ul>
-<li>Take a completed ALK from Chile and an incomplete ALK from China and
-convert the lengths in the Chinese set to catch numbers-at-age by
-quarter and catch weight-at-age by quarter.</li>
-<li>The complete ALK can be found here: <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/completeALK.xlsm?d=wbf0f406e63dd496fb55e51f5b80d1648&amp;csf=1&amp;web=1&amp;e=5Uhiaj" class="uri">https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/completeALK.xlsm?d=wbf0f406e63dd496fb55e51f5b80d1648&amp;csf=1&amp;web=1&amp;e=5Uhiaj</a></li>
-<li>The incomplete ALK can be found here: <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/incompleteALK.xlsm?d=w52c4e6a6a8c444829cef938f30f2668b&amp;csf=1&amp;web=1&amp;e=9bPWoj" class="uri">https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/incompleteALK.xlsm?d=w52c4e6a6a8c444829cef938f30f2668b&amp;csf=1&amp;web=1&amp;e=9bPWoj</a></li>
+<li>Open R</li>
+<li>Navigate to jjmR directory</li>
+<li>Load all the functions within that directory</li>
+<li>Return to jjm/assessment directory</li>
+<li>Run retro function</li>
 </ul>
+<pre class="r"><code># Run the five models in parellel
+library(foreach)
+library(doParallel)
+registerDoParallel(5)
+
+# Set file path to jjmR package and also to jjm working directory
+dir.jjmR &lt;- &quot;../../jjmR&quot;
+dir.jjm &lt;- getwd()
+setwd(dir.jjmR)
+
+# Load all the functions that aren&#39;t exported with jjmR
+devtools::load_all()
+setwd(dir.jjm)
+
+
+FinMod &lt;- &quot;h1_1.05&quot;
+finmod.h1 &lt;- readJJM(FinMod, path = &quot;config&quot;, input = &quot;input&quot;)
+finmod.h1r &lt;- finmod.h1
+names(finmod.h1r) &lt;- FinMod
+Npeels&lt;-5
+
+ret1 &lt;- retro(model = finmod.h1r, n = Npeels, output = &quot;results&quot;, exec=&quot;../src/jjms&quot;,parallel=T)
+
+
+FinMod &lt;- &quot;h2_1.05&quot;
+finmod.h2 &lt;- readJJM(FinMod, path = &quot;config&quot;, input = &quot;input&quot;)
+finmod.h2r &lt;- finmod.h2
+names(finmod.h2r) &lt;- FinMod
+Npeels&lt;-5
+
+
+# The output is also saved to an Rdata file in the jjm/assessment/results folder as &quot;modelname_retrospective.Rdata&quot;
+ret2 &lt;- retro(model = finmod.h2r, n = 5, output = &quot;results&quot;, exec=&quot;../src/jjms&quot;,parallel=T)</code></pre>
+<pre class="r"><code>plot(ret2, var=&quot;SSB&quot;) # only SSB
+#install.packages(&quot;icesAdvice&quot;)
+#Calculation of Mohn&#39;s Rho courtesy of Arni Magnusson
+# ?icesAdvice::mohn
+icesAdvice::mohn(ret2$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
+icesAdvice::mohn(ret2$Stock_2$SSB$var[,1,1:6],peel=5,details=T)</code></pre>
+<p>Relative bias is defined as</p>
+<pre><code>              relbias= (retro - base) / base</code></pre>
+<p>and Mohn’s rho is the average relative bias:</p>
+<pre><code>                    rho = mean(relbias)</code></pre>
+<p>High values of Mohn’s Rho indicate high levels of bias, and that the
+model and the data deserve a closer look.</p>
 </div>
 
 

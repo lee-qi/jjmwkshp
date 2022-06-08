@@ -33,7 +33,7 @@ There are two types of assessment updates we do- update assessments and benchmar
 
 - Focus on updating the data for the year
 
-- Limited number of sensitivitiy analyses conducted
+- Limited number of sensitivity analyses conducted
 
 - Rarely result in changes to model settings
 

@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2022-06-06" />
+<meta name="date" content="2022-06-07" />
 
 <title>Jack Mackerel Assessment Workshop</title>
 
@@ -376,7 +376,7 @@ pre code {
 
 <h1 class="title toc-ignore">Jack Mackerel Assessment Workshop</h1>
 <h3 class="subtitle">Running the Model</h3>
-<h4 class="date">06 June 2022</h4>
+<h4 class="date">07 June 2022</h4>
 
 </div>
 
@@ -402,7 +402,14 @@ diagnostics</p></li>
 <p>Cons:</p>
 <ul>
 <li>Hard to debug if the model goes wrong, as the function creates a
-temporary folder on your local machine where the model is run</li>
+temporary folder on your local machine where the model is run.
+<ul>
+<li>Once the model run is complete, the <code>runit</code> function
+produces this message like this in the console:</li>
+</ul>
+<pre><code>Models were run at /var/folders/dr/lbjfwmm567d2kcmh348218lc0000gn/T//RtmpQtQLls folder.</code></pre>
+If need be, you can also navigate to this folder to find the output
+files from ADMB.</li>
 </ul>
 <p>The code below runs the 2021 assessment from SC9.</p>
 <pre class="r"><code>library(jjmR)
@@ -415,8 +422,8 @@ temporary folder on your local machine where the model is run</li>
 # exec = path to the executable file
 # By default it assumes that the control file will be found in &quot;config&quot;, data file in &quot;input&quot;, and the output will be written to a &quot;results&quot; folder. This function is thus best run when in the jjm/assessment folder.
 
-modh1_1.00 &lt;- runit(mod=&quot;h1_1.00&quot;,pdf=TRUE,est=TRUE,exec=&quot;../src/jjms&quot;)
-modh2_1.00 &lt;- runit(mod=&quot;h2_1.00&quot;,pdf=TRUE,est=TRUE,exec=&quot;../src/jjms&quot;)</code></pre>
+h1.mod &lt;- runit(mod=&quot;h1_1.00&quot;,pdf=TRUE,est=TRUE,exec=&quot;../src/jjms&quot;)
+h2.mod &lt;- runit(mod=&quot;h2_1.00&quot;,pdf=TRUE,est=TRUE,exec=&quot;../src/jjms&quot;)</code></pre>
 </div>
 <div id="using-the-command-line" class="section level2">
 <h2>Using the Command Line</h2>
@@ -432,8 +439,11 @@ card</a></li>
 <li>Easy for debugging if the model is producing nonsensical results
 <ul>
 <li>The executable produces an <code>input.log</code> file that the R
-function automatically deletes as part of cleanup. This file shows
-exactly how the executable reads in each data</li>
+function automatically deletes from the main working directory as part
+of cleanup (you can still access it by navigating to the temporary
+folder as mentioned above). This file shows exactly how the executable
+reads in each input file, and where it stopped should it encounter an
+error.</li>
 </ul></li>
 </ul>
 <p>Cons:</p>
@@ -452,15 +462,20 @@ jjms -ind h1_1.00.ctl
 <div id="assessment-model-outputs" class="section level1">
 <h1>Assessment Model Outputs</h1>
 <p>Once the model is run, we’ll have:</p>
-<ul>
-<li>R.rep</li>
-<li>.cor</li>
-<li>.par</li>
-<li>.rep</li>
-<li>.std</li>
-<li>.yld</li>
-</ul>
+<pre><code>- R.rep
+- .cor
+- .par
+- .rep
+- .std
+- .yld</code></pre>
 <p>We’ll go through the outputs in more detail in another document.</p>
+</div>
+<div id="checking-for-convergence" class="section level1">
+<h1>Checking for Convergence</h1>
+<ul>
+<li>Maximum gradient component</li>
+<li>When the hessian is inverted</li>
+</ul>
 </div>
 <div id="exercise" class="section level1">
 <h1>Exercise</h1>

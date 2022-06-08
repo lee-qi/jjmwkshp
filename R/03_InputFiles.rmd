@@ -266,6 +266,8 @@ names(mod_new[[1]]$data)
 names(mod_new[[1]]$control)
 
 names(mod_new[[1]]$output)
+
+names(mod_new[[1]]$output[[1]])
 ```
 
 # Exercises

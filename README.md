@@ -10,7 +10,7 @@
     1. Running the 2021 assessment
     1. Updating input data
     1. Updating control file
-    1. Single-stock vs two-stock models
+        1. Single-stock vs two-stock models
 
 ### Day 2: Outputs and Diagnostics
 1. Understanding the Outputs

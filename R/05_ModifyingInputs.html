@@ -390,20 +390,20 @@ pre code {
   white-space: pre;
 }
 </style>
-<div id="data-bridging" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Data Bridging</h1>
+<div id="data-bridging" class="section level1">
+<h1>Data Bridging</h1>
 <ul>
 <li><p>When data are added incrementally to the assessment</p></li>
 <li><p>Used to be done by hand</p>
 <ul>
 <li>Annotated Excel spreadsheet found <a href="https://southpacificrfmo.sharepoint.com/:x:/s/SPRFMOSC8/EXbb-znBI91FiUeMF-8BpTkBkl_8cbt5pKpl3XcU8wRTJA?e=VW0d1j">here</a>
-(SC8; with highlighted changes) and <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSC9/Shared%20Documents/Jack%20Mackerel/04%20Data/JM%20Data%20files%20for%20SC09.xlsx?d=w1d21e007b98c44b79f3d8f43c9a46d20&amp;csf=1&amp;web=1&amp;e=OPPEGv">here</a>
+(SC8; with highlighted changes) and <a href="https://github.com/SPRFMO/jjm/blob/master/assessment/data/JM%20Data%20files%20for%20SC09.xlsx">here</a>
 (SC9; without highlighted changes but with accompanying R file; also in
 <code>jjm/assessment/data</code>)</li>
 </ul></li>
 <li><p>Since SC9, there’s an R script to do it</p>
 <ul>
-<li><p><code>jjm/assessment/R/SC09_Bridging.R</code></p></li>
+<li><p><a href="https://github.com/SPRFMO/jjm/blob/master/assessment/R/SC09_Bridging.R"><code>jjm/assessment/R/SC09_Bridging.R</code></a></p></li>
 <li><p>Goes from 0.00 to 1.00 for both single-stock and two-stock
 hypotheses</p></li>
 </ul></li>
@@ -436,13 +436,38 @@ exercise remain relatively static, except for changing the name of the
 data file and adding the one extra year at the top.</p></li>
 </ul>
 </div>
-<div id="updating-the-control-file" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Updating the Control
-File</h1>
+<div id="updating-the-control-file" class="section level1">
+<h1>Updating the Control File</h1>
+<ul>
+<li>Increments years used to estimate the stock-recruitment relationship
+by 1</li>
+</ul>
+<pre class="r"><code># h2_0.10.ctl
+#Nyrs_sr
+18
+27
+16
+#yrs_sr
+2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016  2017
+1970  1971  1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996
+2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016
+
+---
+
+# h2_1.00.ctl
+#Nyrs_sr 
+19 27 16 
+#Nyrs_sr_1 
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 
+#Nyrs_sr_2 
+1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 
+#Nyrs_sr_3 
+2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 </code></pre>
 <ul>
 <li>Increments final year for selectivity change by 1</li>
 </ul>
-<pre class="r"><code># Fishery 1 N Chile  
+<pre class="r"><code># h2_0.10.ctl
+# Fishery 1 N Chile  
 1  #selectivity type
 9  #n_sel_ages
 2  #phase sel
@@ -452,41 +477,49 @@ File</h1>
 36                                                            
 1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996  1997  1998  1999  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013    2014    2015    2016  2017  2018  2019
 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
-# Initial values for coefficitients at each change (one for every change plus 1)  
+# Initial values for coefficients at each change (one for every change plus 1)  
 # 2 3 4 5 6 7 8 9 10 11 12  
-0.2 0.7 1 1 1 1 1 1 1 1 1 1  </code></pre>
-<ul>
-<li>Increments years used to estimate the stock-recruitment relationship
-by 1</li>
-</ul>
-<pre class="r"><code>#Nyrs_sr
-18
-27
-16
-#yrs_sr
-  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016  2017
-1970  1971  1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996
-2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016</code></pre>
+0.2 0.7 1 1 1 1 1 1 1 1 1 1  
+
+---
+
+# h2_1.00.ctl
+#F1_info 
+1 9 2 1 1 37 
+#F1_selchangeYear 
+1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 
+#F1_selchange 
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 
+#F1_selbyage 
+0.2 0.7 1 1 1 1 1 1 1 1 1 1 </code></pre>
 </div>
-<div id="exercises" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Exercises</h1>
+<div id="exercises-using-either-excel-or-r" class="section level1">
+<h1>Exercises (using either Excel or R)</h1>
 <ul>
 <li><p>Add one year of catch data (as was done in the bridging exercise
 for <code>0.04</code> to <code>0.05</code>) to the 2021 data file
-(<code>1.00.dat</code>).</p></li>
+(<code>1.00.dat</code>). Run the model with the updated data
+file.</p></li>
 <li><p>Update the control file from 2021 (<code>h1_1.00.ctl</code> and
-<code>h2_1.00</code>) for 2022.</p></li>
+<code>h2_1.00</code>) for 2022. Run the updated 2022 model.</p></li>
 <li><p>(If you have time) Go through the SC9 model runs and select a
-couple of models to recreate.</p></li>
+couple of models from the table to recreate.</p></li>
 </ul>
 </div>
-<div id="debugging-tips-and-tricks" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Debugging Tips and
-Tricks</h1>
+<div id="debugging-tips-and-tricks" class="section level1">
+<h1>Debugging Tips and Tricks</h1>
 <ul>
-<li>If you’ve edited the input files and the model seems to be giving
+<li><p>If you’ve edited the input files and the model seems to be giving
 nonsensical results, it might be that you’ve missed number or a line in
-the input. Ideally check the <code>input.log</code> file.</li>
+the input.</p>
+<ul>
+<li>Ideally check the <code>input.log</code> file, as mentioned in the
+RunningModel document.</li>
+<li>The control file contains a “Test” value at the end. This acts as a
+check that the control file was read in correctly.</li>
+</ul>
+<pre class="r"><code>#Test  
+123456789  </code></pre></li>
 </ul>
 </div>
 
