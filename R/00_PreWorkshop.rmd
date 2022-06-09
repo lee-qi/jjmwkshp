@@ -89,8 +89,8 @@ knitr::include_graphics("imgs/rstudio.png")
 
 1. The JJM repository can now be found in `NAMEOFYOURDIRECTORY/jjm`
 
-```{r, echo=F}
-knitr::include_graphics("imgs/cmd.png")
+```{r, echo=F, eval=T}
+knitr::include_graphics(here::here("imgs/cmd.png"))
 ```
 
 ### When you're done

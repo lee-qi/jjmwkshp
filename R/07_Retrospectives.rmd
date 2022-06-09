@@ -64,8 +64,22 @@ ret2 <- retro(model = finmod.h2r, n = 5, output = "results", exec="../src/jjms",
 ```
 
 ```{r}
-
 plot(ret2, var="SSB") # only SSB
+```
+
+```{r, echo=F}
+knitr::include_graphics("imgs/h1_retro.png")
+```
+
+```{r, echo=F}
+knitr::include_graphics("imgs/h2_retro_1.png")
+```
+
+```{r, echo=F}
+knitr::include_graphics("imgs/h2_retro_2.png")
+```
+
+```{r}
 #install.packages("icesAdvice")
 #Calculation of Mohn's Rho courtesy of Arni Magnusson
 # ?icesAdvice::mohn
